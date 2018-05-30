@@ -1,0 +1,60 @@
+{% extends "main/base.html" %}
+{% load staticfiles%}
+{% block title %} e-centreconvivial | Consultations{% endblock title %}
+{% block content %}
+{% include "main/menu.html" %}
+<div class="consultation hide-on-med-and-down ">
+    <ul class="slides">
+      <div class="container">
+        <div class="row">
+          <div class="col l8 m8 s12">
+            <br><br>
+            <h2 class="white-text">Consultation IST</h2>
+            <p class="white-text">Le Centre Convivial vous offre des services adaptés en matière de la prise en charge des infections sexuellement transmissible et du dépistage du VIH. En décrivant les maux dont vous souffrez, vous serez automatiquement référés vers une formation sanitaire la plus proche pour une consultation approfondie, un personnel qualifié
+               serrait immédiatement informé de votre arrivée et vous accordera une attention particulière</p>
+               <br>
+               <a href="#" class="btn waves-effect white black-text">Consultation</a>
+          </div>
+        </div>
+
+      </div>
+
+
+    </ul>
+  </div>
+
+
+  {% if user.is_authenticated %}
+
+    <div class="container">
+      <div class="row">
+        <div class="col l8 offset-l2">
+          {% for consultation in consultations %}
+
+          <div class="row">
+             <ul class="collection">
+                 <li class="collection-item avatar">
+                     <a href="#"><img src="{% static 'main/img/ist.png' %}" alt="" class="circle"></a>
+                     <span class="title">{{ consultation.created_at  }}</span>
+                     <p  ><a href="{{consultation.get_absolute_url}}" class="grey-text">{{ consultation.motif }}</a>
+
+
+                     </p>
+
+                 </li>
+             </ul>
+         </div>
+     {% empty %}
+         vous n'avez pas d'assistance encours
+
+
+          {% endfor %}
+        </div>
+        <div class="center-align">
+          <a href="{% url  'new_consultation' %}" class="btn waves-effect">Faire une consultation</a>
+        </div>
+      </div>
+    </div>
+
+  {% endif %}
+{% endblock content %}
