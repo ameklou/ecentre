@@ -5,8 +5,6 @@ from django.dispatch import receiver
 from django.core.urlresolvers import reverse
 
 class Profile(models.Model):
-
-
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     #name= models.CharField(max_length=250)
     birth_date=models.DateField(null=True, blank=True)
